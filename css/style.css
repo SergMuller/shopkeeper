@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+html {
+	background: url(../img/bg_1.png);
+	height: 100%;
+}
+
+body {
+	background: url(../img/texture.png);
+	margin: 0px;
+	height: 100%;
+}
+
+.header,
+.wrapper {
+	width: 900px;
+	margin: 0px auto;
+}
+
+.header {
+	height: 120px;
+}
+
+.logo {
+	width: 216px;
+	height: 100px;
+	background: url(../img/logo.png) no-repeat 0 20px;
+}
+
+.wrapper { 
+	padding: 20px;
+	background: pink;
+}
