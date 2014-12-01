@@ -2,27 +2,38 @@
 // load app config data
 require_once 'site_config.php';
 
-// read from db
+if (array_key_exists('page', $_REQUEST)) {
+	$current_page = intval($_REQUEST['page']);
+} else {
+	$current_page = 0;
+}
+
 $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
 $db->set_charset('utf8');
 
-if ($db->connect_errno) {
-	echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
-}
+if ($db->connect_errno) {}
 
-// by default select 20 topmost articles
-$sql = 'SELECT * FROM ' . $config['table_products'] . ' ORDER BY prod_art ASC LIMIT 20';
+$offset = $current_page * $config['page_size'];
 
+$sql = 'SELECT COUNT(id) FROM ' . $config['table_products'];
 $result = $db->query($sql);
+if (!$result) {}
+$result_row = $result->fetch_row();
+$all_products = $result_row[0];
 
-if (!$result) {
-	echo "Operation failed: (" . $db->errno . ") " . $db->error;
-}
+// setup pager
+$total_pages = ceil($all_products/$config['page_size']);
+
+$sql = 'SELECT * FROM ' . $config['table_products'] . ' ORDER BY prod_art ASC LIMIT ' . $offset . ', ' . $config['page_size'];
+$result = $db->query($sql);
+if (!$result) {}
 $goods = $result->fetch_all(MYSQLI_ASSOC);
 
 // set page view
 $page_template = 'products_list';
 $page_title = 'Товары';
+
+$db->close();
 
 // connect page layout
 include_once 'layout/main.php';

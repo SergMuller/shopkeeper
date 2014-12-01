@@ -7,7 +7,10 @@
 		'db_user' => 'root',
 		'db_pass' => '',
 		'table_products' => 'goods',
-		'table_currencies' => 'currencies'
+		'table_currencies' => 'currencies',
+		'page_size' => 20
 	);
-	
+
+	ini_set('precision', 2);
+	mb_internal_encoding('utf-8');
 ?>

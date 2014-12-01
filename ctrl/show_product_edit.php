@@ -21,7 +21,7 @@ if (!$result) {
 $currencies = $result->fetch_all(MYSQLI_ASSOC);
 
 // prepare data
-if ($_REQUEST['product'] && intval($_REQUEST['product']) > 0) {
+if (array_key_exists('product', $_REQUEST) && intval($_REQUEST['product']) > 0) {
 	// load existing product
 	$sql = 'SELECT * FROM ' . $config['table_products'] . ' WHERE id = ' . $_REQUEST['product'];
 	$result = $db->query($sql);
@@ -36,6 +36,7 @@ if ($_REQUEST['product'] && intval($_REQUEST['product']) > 0) {
 	$in_price 	= $product['in_price'];
 	$out_cur 	= $product['out_cur'];
 	$out_price 	= $product['out_price'];
+	$qty		= $product['qty'];
 	
 	$existing 	= true;
 } else {
@@ -47,6 +48,7 @@ if ($_REQUEST['product'] && intval($_REQUEST['product']) > 0) {
 	$in_price 	= 0.0;
 	$out_cur 	= $currencies[1]['code'];
 	$out_price 	= 0.0;
+	$qty		= 1;
 
 	$existing 	= false;
 }

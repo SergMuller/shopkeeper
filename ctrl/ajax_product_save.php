@@ -10,6 +10,15 @@ $in_cur 	= $_POST['in_cur'];
 $in_price 	= floatval($_POST['in_price']);
 $out_cur 	= $_POST['out_cur'];
 $out_price 	= floatval($_POST['out_price']);
+$qty		= intval($_POST['qty']);
+
+if ($art == '') {
+	// sync - redirect
+	header('Location: index.php?p=addproduct&warning=1');
+	// ajax - send some json
+	// { 'warning': 1}
+	exit(1);
+}
 
 // read from db
 $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
@@ -36,14 +45,15 @@ if ($check_hash == $_POST['check']) {
 	$existing = $id > 0;
 	if (!$existing) {
 		// insert values into products table
-		$sql = 'INSERT INTO ' . $config['table_products'] . ' (prod_art, prod_name, prod_desc, in_cur, in_price, out_cur, out_price)' .
+		$sql = 'INSERT INTO ' . $config['table_products'] . ' (prod_art, prod_name, prod_desc, in_cur, in_price, out_cur, out_price, qty)' .
 				' VALUES ("' . $db->real_escape_string($art) . '", "'
 						. $db->real_escape_string($name) . '", "'
 						. $db->real_escape_string($desc) . '", "'
 						. $db->real_escape_string($in_cur) . '", '
 						. $in_price . ', "'
 						. $db->real_escape_string($out_cur) . '", '
-						. $out_price . ')';
+						. $out_price . ', '
+						. $qty . ')';
 	} else {
 		$sql = 'UPDATE ' . $config['table_products'] .
 				' SET prod_art = "' . $db->real_escape_string($art) . 
@@ -52,7 +62,8 @@ if ($check_hash == $_POST['check']) {
 					'", in_cur = "' . $db->real_escape_string($in_cur) . 
 					'", in_price = ' . $in_price . 
 					', out_cur = "' . $db->real_escape_string($out_cur) . 
-					'", out_price = ' . $out_price . 
+					'", out_price = ' . $out_price .
+					', qty = ' . $qty . 
 				' WHERE id = ' . $_POST['product'];
 	}
 	
@@ -64,7 +75,7 @@ if ($check_hash == $_POST['check']) {
 		if ($existing) {
 			$insert_id = $_POST['product'];
 		} else {
-			$insert_id = $db->insert_id();
+			$insert_id = $db->insert_id;
 		}
 		$insert_result = 2;
 	}
@@ -74,6 +85,8 @@ if ($check_hash == $_POST['check']) {
 
 $db->close();
 
-echo $insert_result;
+// prepare ajax response
+// echo {'warning': $insert_result};
+
 header('Location: index.php?p=list');
 ?>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Бижуин :: <?php echo $page_title ?></title>
-	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>

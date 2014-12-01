@@ -3,6 +3,7 @@
 html {
 	background: url(../img/bg_1.png);
 	height: 100%;
+	font: 14px Georgia,serif;
 }
 
 body {
@@ -10,6 +11,10 @@ body {
 	margin: 0px;
 	height: 100%;
 }
+
+a,
+a:visited { color: #916 }
+a:hover { color: #c39 }
 
 .header,
 .wrapper {
@@ -30,4 +35,112 @@ body {
 .wrapper { 
 	padding: 20px;
 	background: pink;
+	overflow: hidden;
+}
+
+.warning {
+	padding-left: 20px;
+	text-align: left;
+	color: #f16;
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	padding: 8px;
+}
+
+tbody tr:nth-child(odd) {
+	background: #fac;
+}
+
+.currency {
+	color: #444;
+}
+
+a.button {
+	margin: 10px 0;
+	padding: 6px 8px;
+	border: 1px solid #603;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: bold;
+	color: pink;
+	background: linear-gradient(#e9d, #b28);
+}
+a.button:hover {
+	border-bottom: 1px solid #814;
+	background: linear-gradient(#C39, #fac);
+}
+
+span.pseudo-link {
+	border-bottom: 1px dashed #916;
+}
+
+div.hidden_desc {
+	display: none;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 2px 2px 8px grey;
+	width: 200px;
+	max-height: 400px;
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	background: pink;
+	z-index: 2;
+}
+
+form div.row {
+	margin: 10px 0;
+}
+
+form label {
+	width: 200px;
+	text-align: right;
+	vertical-align: top;
+	display: inline-block;
+}
+
+form .mandatory label {
+	font-weight: bold;
+}
+
+label[for="in_cur"],
+label[for="out_cur"] {
+	width: 64px;
+}
+
+form input,
+form textarea {
+	width: 200px;
+}
+
+/* pager layout */
+.pager {
+	float: right;
+	color: #916;
+	margin: 10px 0px;
+}
+
+.pager .cur_page {
+	background: #916;
+	color: pink;
+	padding: 4px 6px;
+	font-weight: bold;
+	border: 1px solid #916;
+}
+
+.pager a.page_link {
+	color: #916;
+	padding: 4px 6px;
+	border: 1px solid;
+	text-decoration: none;
+}
+.pager a.page_link:hover {
+	background: #916;
+	color: pink;
+	border: 1px solid #916;
 }
