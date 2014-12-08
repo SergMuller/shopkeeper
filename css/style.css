@@ -144,3 +144,34 @@ form textarea {
 	color: pink;
 	border: 1px solid #916;
 }
+span.values {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/* search form */
+.search_form {
+	display: block;
+}
+
+.search_form input[type="text"] {
+	border: 1px solid #916;
+	background: #fac;
+	padding: 6px 8px;
+	border-radius: 6px;
+}
+
+.search_form input[type="submit"] {
+	width: 100px;
+	padding: 6px 8px;
+	border: 1px solid #603;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: bold;
+	color: pink;
+	background: linear-gradient(#e9d, #b28);
+}
+.search_form input[type="submit"]:hover {
+	border-bottom: 1px solid #814;
+	background: linear-gradient(#C39, #fac);
+}

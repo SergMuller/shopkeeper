@@ -88,5 +88,5 @@ $db->close();
 // prepare ajax response
 // echo {'warning': $insert_result};
 
-header('Location: index.php?p=list');
+header('Location: index.php?p=list&page=' . $_POST['page']);
 ?>

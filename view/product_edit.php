@@ -14,6 +14,7 @@
 	<h1><?php if ($existing) { ?>Обновление<?php } else { ?>Добавление<?php } ?> товара</h1>
 	<form action="index.php" method="POST">
 		<input type="hidden" name="p" value="saveproduct" />
+		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 		<input type="hidden" name="check" value="<?php echo $check_hash ?>" />
 		<input type="hidden" name="product" value="<?php echo $id ?>" />
 		<div class="row art mandatory">

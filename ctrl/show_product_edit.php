@@ -2,6 +2,10 @@
 // load app config data
 require_once 'site_config.php';
 
+if (!array_key_exists('page', $_REQUEST)) {
+	$_REQUEST['page'] = 0;
+}
+
 // read from db
 $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
 $db->set_charset('utf8');
